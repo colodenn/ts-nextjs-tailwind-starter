@@ -8,6 +8,7 @@ import Seo from '@/components/Seo';
 export default function Login() {
   const [toggle, setToggle] = useState(true);
   // const router = useRouter();
+
   return (
     <Layout>
       <Seo templateTitle='Login' />
@@ -35,14 +36,14 @@ export default function Login() {
                 <br />
                 <button
                   onClick={() => setToggle(!toggle)}
-                  className='mt-2 w-full rounded-sm bg-[#292929] py-2 font-medium text-white hover:bg-gray-800'
+                  className='mt-2 w-full rounded-sm bg-[#292929] px-4 py-2 font-primary  font-medium text-white hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-1'
                 >
                   Send Magic Link
                 </button>
               </div>
             ) : (
               <div className='items-center justify-center'>
-                <div className='mb-6 flex justify-center'>
+                <div className='mb-4  flex justify-center'>
                   <ScaleLoader
                     color='#292929'
                     loading={true}

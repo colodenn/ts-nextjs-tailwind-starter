@@ -2,16 +2,20 @@
 import { faBell, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Tab } from '@headlessui/react';
 import * as React from 'react';
+import { Fragment, useState } from 'react';
 import { useAlert } from 'react-alert';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import IconButton from '@/components/buttons/IconButton';
 import DashboardLayout from '@/components/layout/DashboardLayout';
+import MainModal from '@/components/modals/MainModal';
 import Seo from '@/components/Seo';
 import ContentHeading from '@/components/text/ContentHeading';
 import ContentSubHeading from '@/components/text/ContentSubHeading';
 export default function HomePage() {
   const alert = useAlert();
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Seo />
@@ -33,7 +37,7 @@ export default function HomePage() {
 
           <IconButton
             icon={faPlus}
-            onClick={() => console.log('test')}
+            onClick={() => setOpen(true)}
             text='Open Modal'
           />
         </section>
@@ -80,6 +84,8 @@ export default function HomePage() {
           />
         </section>
       </DashboardLayout>
+
+      <MainModal open={open} setOpen={setOpen} />
     </>
   );
 }
