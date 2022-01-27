@@ -27,7 +27,7 @@ export default function HomePage() {
             <div className='mt-5'>
               <IconButton
                 icon={faExternalLinkAlt}
-                text='Zum Rechnungsportal gehen'
+                text='Go to the billing portal'
                 onClick={() => console.log('test')}
               />
             </div>
