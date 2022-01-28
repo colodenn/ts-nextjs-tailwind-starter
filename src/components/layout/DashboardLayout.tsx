@@ -1,4 +1,4 @@
-import { faCog, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar, faCog, faHome } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import User from '@/components/layout/User';
@@ -14,7 +14,7 @@ export default function DashboardLayout({
   current: string;
 }) {
   return (
-    <div className='flex h-screen w-full'>
+    <div className='flex h-screen w-full overflow-hidden'>
       <div className='flex w-64 flex-col justify-between border-r-[1px] border-gray-300 p-2'>
         <div>
           <div>
@@ -30,7 +30,14 @@ export default function DashboardLayout({
               />
 
               <SidebarListItem
-                link='settings'
+                link='stats'
+                icon={faChartBar}
+                text='Stats'
+                active={'Stats' === current}
+              />
+
+              <SidebarListItem
+                link='settings/profile'
                 icon={faCog}
                 text='Settings'
                 active={'Settings' === current}
@@ -40,7 +47,9 @@ export default function DashboardLayout({
         </div>
         <User />
       </div>
-      <div className='w-full bg-[#F5F5F5] p-8'>{children}</div>
+      <div className='h-full w-full overflow-y-scroll bg-[#F5F5F5] p-8'>
+        {children}
+      </div>
     </div>
   );
 }

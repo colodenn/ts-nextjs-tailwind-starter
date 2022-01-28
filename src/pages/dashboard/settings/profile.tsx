@@ -6,6 +6,7 @@ import IconButton from '@/components/buttons/IconButton';
 import SimpleCard from '@/components/cards/SimpleCard';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import Seo from '@/components/Seo';
+import SettingsTabs from '@/components/tabs/SettingsTabs';
 import ContentHeading from '@/components/text/ContentHeading';
 
 export default function HomePage() {
@@ -16,6 +17,9 @@ export default function HomePage() {
         <ContentHeading text='Settings'>
           Edit your profile information, which is displayed with your Cal link.
         </ContentHeading>
+        <section className='mt-6'>
+          <SettingsTabs current='Profil' />
+        </section>
         <section className='mt-8 max-w-4xl'>
           <SimpleCard>
             <h3 className='text-lg font-medium leading-6 text-gray-900'>
