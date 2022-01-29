@@ -30,7 +30,7 @@ export default function User() {
             />
           </div>
           <div className='ml-2'>
-            <p className='block truncate text-sm font-medium text-gray-900'>
+            <p className='block truncate text-left text-sm font-medium text-gray-900'>
               colodenn
             </p>
             <p className='block truncate text-sm font-normal text-neutral-500'>

@@ -1,4 +1,9 @@
-import { faChartBar, faCog, faHome } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChartBar,
+  faCog,
+  faHome,
+  faPuzzlePiece,
+} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import User from '@/components/layout/User';
@@ -41,6 +46,12 @@ export default function DashboardLayout({
                 icon={faCog}
                 text='Settings'
                 active={'Settings' === current}
+              />
+              <SidebarListItem
+                link='components'
+                icon={faPuzzlePiece}
+                text='Components'
+                active={'Components' === current}
               />
             </ul>
           </div>

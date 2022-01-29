@@ -16,7 +16,7 @@ export default function HoverCard({
   return (
     <>
       {hover && (
-        <div className='absolute mt-8 w-72 rounded-sm border-[1px] bg-white p-4 shadow'>
+        <div className='absolute -mt-80 w-72 rounded-sm border-[1px] bg-white p-4 shadow'>
           <div className='flex items-center'>
             <div className='mr-2'>
               {' '}
