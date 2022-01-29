@@ -7,7 +7,7 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ['res.cloudinary.com', 'www.gravatar.com'],
+    domains: ['res.cloudinary.com', 'www.gravatar.com', 'www.asfinag.at'],
   },
 
   // SVGR
