@@ -3,13 +3,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 
 import prisma from '../../lib/prisma';
-
 export default async function hello(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
   if (session?.user != null) {
-    const result = await prisma.visitorCount.create({
-      data: {
-        user: { connect: { email: session.user.email } },
+    const result = await prisma.visitorCount.findMany({
+      where: {
+        user: { email: session.user.email },
       },
     });
     res.status(200).json({ name: result });

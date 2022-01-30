@@ -3,21 +3,25 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSession } from 'next-auth/react';
 import * as React from 'react';
+import { useState } from 'react';
 
 import SimpleDivider from '@/components/divider/SimpleDivider';
 import DashboardLayout from '@/components/layout/DashboardLayout';
+import DeleteModal from '@/components/modals/DeleteModal';
 import Seo from '@/components/Seo';
 import SettingsTabs from '@/components/tabs/SettingsTabs';
 import ContentHeading from '@/components/text/ContentHeading';
 
 export default function HomePage() {
   const { data } = useSession();
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Seo />
       <DashboardLayout current='Settings'>
-        <ContentHeading text='Settings'>
-          Edit your profile information, which is displayed with your Cal link.
+        <ContentHeading text='Profile'>
+          Edit your profile information.
         </ContentHeading>
         <section className='mt-6'>
           <SettingsTabs current='Profile' />
@@ -88,7 +92,10 @@ export default function HomePage() {
           <div className='mt-6'>
             <SimpleDivider />
             <div className='mt-6'>
-              <button className='relative inline-flex items-center rounded-sm border-2 border-red-700 bg-transparent px-3 py-2 text-sm font-medium text-gray-700 text-red-700 hover:bg-red-100 hover:text-red-700 focus:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1'>
+              <button
+                className='relative inline-flex items-center rounded-sm border-2 border-red-700 bg-transparent px-3 py-2 text-sm font-medium  text-red-700 hover:bg-red-100 hover:text-red-700 focus:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1'
+                onClick={() => setOpen(true)}
+              >
                 <span className='mr-2'>
                   <FontAwesomeIcon icon={faTrash} />
                 </span>
@@ -98,6 +105,7 @@ export default function HomePage() {
           </div>
         </section>
       </DashboardLayout>
+      <DeleteModal open={open} setOpen={setOpen} />
     </>
   );
 }

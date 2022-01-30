@@ -14,8 +14,8 @@ export default function Billing() {
     <>
       <Seo />
       <DashboardLayout current='Settings'>
-        <ContentHeading text='Settings'>
-          Edit your profile information, which is displayed with your Cal link.
+        <ContentHeading text='Billing'>
+          Manage your billing information.
         </ContentHeading>
         <section className='mt-6'>
           <SettingsTabs current='Billing' />
