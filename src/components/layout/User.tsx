@@ -2,18 +2,26 @@
 import { faAngleUp, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Popover } from '@headlessui/react';
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
 import IconButton from '../buttons/IconButton';
 import NextImage from '../NextImage';
+
 export default function User() {
+  const { data } = useSession();
   return (
     <Popover className='relative'>
-      <Popover.Panel className='absolute bottom-16 z-10 w-full rounded-md bg-gray-50 p-4'>
+      <Popover.Panel className='absolute bottom-12 z-10 w-full rounded-sm border-[1px] border-gray-100 bg-white p-4 shadow-sm'>
         <div className='grid-cols grid'>
           <IconButton
             text='Logout'
             icon={faDoorClosed}
-            onClick={() => console.log('logout')}
+            onClick={() =>
+              signOut({
+                callbackUrl: `/`,
+              })
+            }
           />
         </div>
       </Popover.Panel>
@@ -26,14 +34,17 @@ export default function User() {
               useSkeleton={true}
               width={42}
               height={42}
-              src='https://www.gravatar.com/avatar/146151613d19443af3017d3e3ad89de8?s=160&d=identicon&r=PG'
+              src={
+                data?.user?.image ||
+                'https://www.gravatar.com/avatar/146151613d19443af3017d3e3ad89de8?s=160&d=identicon&r=PG'
+              }
             />
           </div>
           <div className='ml-2'>
             <p className='block truncate text-left text-sm font-medium text-gray-900'>
-              colodenn
+              {data?.user?.name}
             </p>
-            <p className='block truncate text-sm font-normal text-neutral-500'>
+            <p className='block truncate text-left text-sm font-normal text-neutral-500'>
               Administrator
             </p>
           </div>

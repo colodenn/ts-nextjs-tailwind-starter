@@ -20,7 +20,7 @@ export default function Components() {
   return (
     <>
       <Seo />
-      <DashboardLayout current='Home'>
+      <DashboardLayout current='Components'>
         <ContentHeading text='Components'>Components</ContentHeading>
 
         <section className='mt-8'>

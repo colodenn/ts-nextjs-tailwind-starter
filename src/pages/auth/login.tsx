@@ -1,4 +1,7 @@
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { getSession, signIn } from 'next-auth/react';
 import * as React from 'react';
 import { useState } from 'react';
 import ScaleLoader from 'react-spinners/ScaleLoader';
@@ -7,7 +10,6 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 export default function Login() {
   const [toggle, setToggle] = useState(true);
-  // const router = useRouter();
 
   return (
     <Layout>
@@ -24,21 +26,23 @@ export default function Login() {
               <div>
                 <h1 className='mb-8 text-center text-3xl md:text-4xl'>Login</h1>
                 <p className='font-primary'>
-                  Enter your email address to sign in or create a new account.
-                  We&apos;ll send you a login link.
+                  Log in with your faviourite social media account.
                 </p>
-                <input
-                  required={true}
-                  className='mt-4 w-full rounded-sm focus:border-[#292929] focus:ring-[#292929]'
-                  type='email'
-                  placeholder='user@ertappen.com'
-                />{' '}
+
                 <br />
                 <button
-                  onClick={() => setToggle(!toggle)}
-                  className='mt-2 w-full rounded-sm bg-[#292929] px-4 py-2 font-primary  font-medium text-white hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-1'
+                  onClick={() => {
+                    setToggle(!toggle);
+                    signIn('github', {
+                      callbackUrl: `/dashboard`,
+                    });
+                  }}
+                  className='mt-2 flex w-full items-center rounded-sm bg-[#292929] px-4 py-2 font-primary  font-medium text-white hover:bg-opacity-90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-1'
                 >
-                  Send Magic Link
+                  <span className='mr-4'>
+                    <FontAwesomeIcon icon={faGithub} />
+                  </span>
+                  Sign in with Github
                 </button>
               </div>
             ) : (
@@ -54,7 +58,7 @@ export default function Login() {
                   />
                 </div>
                 <p className='text-center'>
-                  Check your email for a login link.
+                  Please hold on while we sign you in.
                 </p>
               </div>
             )}
@@ -63,4 +67,22 @@ export default function Login() {
       </main>
     </Layout>
   );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }

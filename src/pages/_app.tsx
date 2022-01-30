@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
 import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import 'cal-sans';
@@ -9,7 +10,7 @@ import '@/styles/colors.css';
 
 import Layout from '@/components/layout/Layout';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   // optional configuration
   const options = {
     // you can also just use 'bottom center'
@@ -20,11 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     transition: transitions.SCALE,
   };
   return (
-    <AlertProvider template={AlertTemplate} {...options}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AlertProvider>
+    <SessionProvider session={session}>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AlertProvider>
+    </SessionProvider>
   );
 }
 
