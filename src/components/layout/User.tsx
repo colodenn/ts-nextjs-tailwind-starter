@@ -1,28 +1,33 @@
 /* eslint-disable no-console */
-import { faAngleUp, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+import { faAngleUp, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Popover } from '@headlessui/react';
 import { useSession } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
 
-import IconButton from '../buttons/IconButton';
 import NextImage from '../NextImage';
 
 export default function User() {
   const { data } = useSession();
   return (
     <Popover className='relative'>
-      <Popover.Panel className='absolute bottom-12 z-10 w-full rounded-sm border-[1px] border-gray-100 bg-white p-4 shadow-sm'>
-        <div className='grid-cols grid'>
-          <IconButton
-            text='Logout'
-            icon={faDoorClosed}
+      <Popover.Panel className='absolute bottom-12 z-10 w-full rounded-sm border-[1px] border-gray-100 bg-white  shadow-sm'>
+        <div className='grid-cols grid  '>
+          <div
+            className='cursor-pointer text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900'
             onClick={() =>
               signOut({
                 callbackUrl: `/`,
               })
             }
-          />
+          >
+            <button className='font-base flex cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900'>
+              <span className='mr-2'>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </span>
+              Logout
+            </button>
+          </div>
         </div>
       </Popover.Panel>
       <Popover.Button>

@@ -17,11 +17,11 @@ export default function StatsPage() {
           Get insight into your usage and usage of your Preview link.
         </ContentHeading>
         <section className='mt-8 max-w-4xl'>
-          <ContentSubHeading text='Visitor Count' />
+          <ContentSubHeading text='Preview Count' />
           <SimpleCard>
             <div className='h-[300px] w-full'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Visitor Count{' '}
+                Preview Count
               </h3>
               <LineChart />
             </div>
