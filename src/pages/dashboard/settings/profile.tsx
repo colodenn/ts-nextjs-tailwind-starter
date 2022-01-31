@@ -29,7 +29,7 @@ export default function HomePage() {
         <section className='mt-8 max-w-4xl'>
           <div className='flex w-full flex-col lg:flex-row'>
             <div className='flex-grow space-y-6'>
-              <div className='block space-x-4 sm:flex'>
+              <div className='block sm:flex sm:space-x-4'>
                 <div className='col-span-6 w-full sm:col-span-3'>
                   <label
                     htmlFor='first-name'
@@ -47,7 +47,7 @@ export default function HomePage() {
                     className='mt-1 block w-full rounded-sm border border-gray-300 px-3 py-2 shadow-sm focus:border-neutral-800 focus:outline-none focus:ring-neutral-800 sm:text-sm'
                   />
                 </div>
-                <div className='col-span-6 w-full sm:col-span-3'>
+                <div className='col-span-6 mt-2 w-full sm:col-span-3 sm:mt-0'>
                   <label
                     htmlFor='first-name'
                     className='block text-sm font-medium text-gray-700'

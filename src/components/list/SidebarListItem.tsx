@@ -21,10 +21,10 @@ export default function SidebarListItem({
         }`}
       >
         <div className='flex'>
-          <div className='my-auto mr-4 flex w-6 items-center justify-center'>
+          <div className='my-auto flex w-6 items-center justify-center'>
             <FontAwesomeIcon icon={icon} />
           </div>
-          <div className='text-sm font-medium'>{text}</div>
+          {text != '' && <div className='ml-4 text-sm font-medium'>{text}</div>}
         </div>
       </li>
     </Link>

@@ -50,7 +50,7 @@ export default function HomePage() {
               {data ? (
                 <div
                   className='flex h-6 items-center  justify-center rounded-sm bg-[#292929]'
-                  style={{ width: data.name._count.userId / 2500 }}
+                  style={{ width: data?.name?._count?.userId / 2500 }}
                 ></div>
               ) : (
                 <div className='flex h-6 w-1/2 items-center  justify-center rounded-sm bg-[#292929]'></div>
