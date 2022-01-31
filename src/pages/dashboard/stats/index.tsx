@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import * as React from 'react';
-import useSWR from 'swr';
 
 import SimpleCard from '@/components/cards/SimpleCard';
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -10,10 +9,6 @@ import ContentHeading from '@/components/text/ContentHeading';
 import ContentSubHeading from '@/components/text/ContentSubHeading';
 
 export default function StatsPage() {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data } = useSWR('/api/visitorCount', fetcher);
-  console.log(data);
-
   return (
     <>
       <Seo />

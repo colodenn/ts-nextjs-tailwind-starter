@@ -16,7 +16,7 @@ export default function DashboardLayout({
   current,
 }: {
   children: React.ReactNode;
-  current: string;
+  current?: string;
 }) {
   return (
     <div className='flex h-screen w-full overflow-hidden'>

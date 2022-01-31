@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import SimpleDivider from '../divider/SimpleDivider';
 
-export default function SettingsTabs({ current }: { current: string }) {
+export default function SettingsTabs({ current }: { current?: string }) {
   return (
     <>
       <nav className='-mb-px flex space-x-2 sm:space-x-5' aria-label='Tabs'>

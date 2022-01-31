@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
+import { useToast } from '@chakra-ui/react';
 import { faClipboard, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-import { useAlert } from 'react-alert';
 
 import IconButton from '@/components/buttons/IconButton';
 import SimpleDivider from '@/components/divider/SimpleDivider';
@@ -17,7 +17,8 @@ function copyText(entryText: string) {
 export default function HomePage() {
   const [blur, setBlur] = React.useState(true);
   const [key] = React.useState('api_f2j913kfsl0138fsm');
-  const alert = useAlert();
+  const toast = useToast();
+
   return (
     <>
       <Seo />
@@ -57,7 +58,14 @@ export default function HomePage() {
                 icon={faClipboard}
                 text='Copy'
                 onClick={() => {
-                  alert.show('Copied to clipboard');
+                  toast({
+                    description: 'Text copied to clipboard.',
+                    status: 'info',
+                    duration: 9000,
+                    position: 'bottom-right',
+                    isClosable: true,
+                  });
+
                   copyText(key);
                 }}
               />
