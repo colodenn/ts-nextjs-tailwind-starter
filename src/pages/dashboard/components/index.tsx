@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
+import { useToast } from '@chakra-ui/react';
 import { faBell, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Tab } from '@headlessui/react';
 import * as React from 'react';
 import { Fragment, useState } from 'react';
-import { useAlert } from 'react-alert';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import IconButton from '@/components/buttons/IconButton';
@@ -14,9 +14,8 @@ import Seo from '@/components/Seo';
 import ContentHeading from '@/components/text/ContentHeading';
 import ContentSubHeading from '@/components/text/ContentSubHeading';
 export default function Components() {
-  const alert = useAlert();
   const [open, setOpen] = useState(false);
-
+  const toast = useToast();
   return (
     <>
       <Seo />
@@ -28,7 +27,15 @@ export default function Components() {
 
           <IconButton
             icon={faBell}
-            onClick={() => alert.show('Use Alert!')}
+            onClick={() =>
+              toast({
+                description: 'Alert oder so.',
+                status: 'info',
+                duration: 9000,
+                position: 'bottom-right',
+                isClosable: true,
+              })
+            }
             text='Use Alert!'
           />
         </section>

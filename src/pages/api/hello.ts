@@ -9,7 +9,7 @@ export default async function hello(req: NextApiRequest, res: NextApiResponse) {
   if (session?.user != null) {
     const result = await prisma.visitorCount.create({
       data: {
-        user: { connect: { email: session.user.email } },
+        user: { connect: { email: String(session.user.email) } },
       },
     });
     res.status(200).json({ name: result });

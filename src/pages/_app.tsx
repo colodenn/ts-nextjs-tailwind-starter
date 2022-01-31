@@ -1,3 +1,4 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { positions, Provider as AlertProvider, transitions } from 'react-alert';
@@ -21,11 +22,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   };
   return (
     <SessionProvider session={session}>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AlertProvider>
+      <ChakraProvider>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AlertProvider>
+      </ChakraProvider>
     </SessionProvider>
   );
 }

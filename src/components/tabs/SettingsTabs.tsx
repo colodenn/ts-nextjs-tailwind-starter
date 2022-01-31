@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import SimpleDivider from '../divider/SimpleDivider';
+
 export default function SettingsTabs({ current }: { current: string }) {
   return (
     <>
@@ -95,7 +97,7 @@ export default function SettingsTabs({ current }: { current: string }) {
           </div>
         </Link>
       </nav>
-      <hr className='h-[1px] w-full bg-black' />
+      <SimpleDivider />
     </>
   );
 }

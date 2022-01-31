@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
+import { useToast } from '@chakra-ui/react';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import { Fragment, useState } from 'react';
-import { useAlert } from 'react-alert';
+import useSWR from 'swr';
 
 import IconButton from '@/components/buttons/IconButton';
 import SimpleCard from '@/components/cards/SimpleCard';
@@ -13,8 +14,11 @@ import Seo from '@/components/Seo';
 import ContentHeading from '@/components/text/ContentHeading';
 import ContentSubHeading from '@/components/text/ContentSubHeading';
 export default function HomePage() {
-  const alert = useAlert();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fetcher = (a: any) => fetch(a).then((res) => res.json());
   const [open, setOpen] = useState(false);
+  const { data } = useSWR('/api/visitorCount', fetcher);
+  const toast = useToast();
 
   return (
     <>
@@ -40,10 +44,17 @@ export default function HomePage() {
             <div className='mt-4'>
               <div className='align-center -mb-6  flex h-6 w-full items-center justify-center rounded-sm bg-[#bbbbbb] text-center text-sm font-medium text-white'>
                 <div className='align-center  text-center'>
-                  1,252 / 2,500 previews
+                  {data?.name?._count?.userId}/ 2,500 previews
                 </div>
               </div>
-              <div className='flex  h-6 w-1/2 items-center  justify-center rounded-sm bg-[#292929]'></div>
+              {data ? (
+                <div
+                  className='flex h-6 items-center  justify-center rounded-sm bg-[#292929]'
+                  style={{ width: data.name._count.userId / 2500 }}
+                ></div>
+              ) : (
+                <div className='flex h-6 w-1/2 items-center  justify-center rounded-sm bg-[#292929]'></div>
+              )}
             </div>
             <div className='mt-5'>
               <IconButton
@@ -84,7 +95,15 @@ export default function HomePage() {
               <IconButton
                 icon={faClipboard}
                 text='Copy'
-                onClick={() => alert.show('Copied to clipboard')}
+                onClick={() =>
+                  toast({
+                    description: 'Text copied to clipboard.',
+                    status: 'info',
+                    duration: 9000,
+                    position: 'bottom-right',
+                    isClosable: true,
+                  })
+                }
               />
             </div>
           </SimpleCard>
