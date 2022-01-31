@@ -74,14 +74,14 @@ export default function DashboardLayout({
         </div>
       ) : (
         <div className=' flex-col overflow-hidden'>
-          <div className='flex h-16 items-center justify-between p-2'>
+          <div className='flex h-16 items-center justify-between border-b-[1px] p-2'>
             <Logo />
             <User />
           </div>
           <div className='mobile-height w-full overflow-y-scroll bg-[#F5F5F5] p-4'>
             {children}
           </div>
-          <div className=''>
+          <div className='border-t-[1px]'>
             <ul className='flex items-center justify-between px-2'>
               <SidebarListItem
                 icon={faHome}
